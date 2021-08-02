@@ -11,11 +11,14 @@ router.get('/', ProductsController.getProducts);
 //ROTA DE LISTAR PRODUTO PELO ID
 router.get('/:id', ProductsController.getProductByID);
 
-//ROTA DE INSERIR PRODUTO
-router.post('/', ProductsController.postProduct);
+//ROTA DE ATUALIZAR PRODUTO
+router.put('/:id', ProductsController.updateProduct);
 
 //ROTA DE ATUALIZAR PRODUTO
 router.patch('/:id', ProductsController.updateProduct);
+
+//ROTA DE INSERIR PRODUTO
+router.post('/', ProductsController.postProduct);
 
 //ROTA DE DELETAR PRODUTO
 router.delete('/:id', ProductsController.deleteProduct);

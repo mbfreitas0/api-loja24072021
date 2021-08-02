@@ -37,6 +37,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.options('/products/:id', cors()) // enable pre-flight request for DELETE request
+app.put('/products/:id', cors(), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+
+})
+app.patch('/products/:id', cors(), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+
+})
 app.delete('/products/:id', cors(), function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
 

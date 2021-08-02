@@ -30,16 +30,26 @@ exports.getProductByID = async (req, res, next) => {
 
 // Insere um novo produto
 exports.postProduct = async (req, res, next) => {
+             
     pool.getConnection(function (err, connection) {
         var dados = req.body;
-        var nome = dados.nome;
-        var quant = dados.quant;
-
+        var id_grupo = dados.id_grupo;
+        var id_marca = dados.id_marca;
+        var id_locacao = dados.id_locacao;
+        var status = dados.status;
+        var descricao = dados.descricao;
+        var estoque_min = dados.estoque_min;
+        var estoque_max = dados.estoque_max;
+        
         connection.query(
-            "INSERT INTO produtos (nome, quant) VALUES ('"
-            + nome + "','"
-            + quant +
-            "')", function (err, rows) {
+            "INSERT INTO produtos (id_grupo, id_marca, id_locacao, status, descricao, estoque_min, estoque_max) VALUES ('" 
+                + id_grupo + "','"
+                + id_marca + "','"
+                + id_locacao + "','"
+                + status + "','"
+                + descricao + "','"
+                + estoque_min + "','"
+                + estoque_max + "')", function (err, rows) {
 
                 if (rows.affectedRows) {
                     connection.query("SELECT * FROM produtos WHERE id='" + rows.insertId
@@ -60,13 +70,23 @@ exports.updateProduct = async (req, res, next) => {
     pool.getConnection(function (err, connection) {
         var dados = req.body;
         var id = req.params.id;
-        var nome = dados.nome;
-        var quant = dados.quant;
+        var id_grupo = dados.id_grupo;
+        var id_marca = dados.id_marca;
+        var id_locacao = dados.id_locacao;
+        var status = dados.status;
+        var descricao = dados.descricao;
+        var estoque_min = dados.estoque_min;
+        var estoque_max = dados.estoque_max;
 
         connection.query(
-            "UPDATE produtos SET nome='" + nome +
-            "', quant='" + quant +
-            "'WHERE id='" + id +
+            "UPDATE produtos SET id_grupo='" + id_grupo +
+            "', id_marca= '" + id_marca +
+            "', id_locacao= '" + id_locacao +
+            "', status= '" + status +
+            "', descricao= '" + descricao +
+            "', estoque_min= '" + estoque_min +
+            "', estoque_max= '" + estoque_max +
+            "'WHERE id= '" + id +
             "'", function (err, rows) {
 
                 if (rows.affectedRows) {
